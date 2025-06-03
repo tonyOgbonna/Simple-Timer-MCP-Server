@@ -57,6 +57,21 @@ Database initialized and 'timers' table ensured.
 MCP Server 'Simple Timer' started and listening via StdioServerTransport.
 ```
 
+## Integration with MCP Hosts
+
+This section provides general guidance on how to integrate this local MCP server with various MCP-compatible hosts (e.g., Cline, Roo Code, Cursor, Claude Code). The exact steps may vary slightly depending on the host's interface.
+
+Typically, you will need to provide the host with the command to execute this server.
+
+1.  **Ensure the server is built**: Before integrating, make sure the project is built by running `yarn build`.
+2.  **Provide the execution command**: The command to run this server is `node dist/index.js`.
+
+    -   **For hosts that accept a direct command**: Simply provide `node dist/index.js`.
+    -   **For hosts that require a full path**: You might need to provide the absolute path to your project's `dist/index.js` file, e.g., `/path/to/your/project/timer_mcp_server/dist/index.js`.
+    -   **For hosts that use `package.json` scripts**: Some hosts might automatically detect and use the `start` script defined in `package.json` (i.e., `yarn start`).
+
+    Consult your specific MCP host's documentation for precise instructions on adding a local MCP server.
+
 ## MCP Tools
 
 This MCP Server exposes two tools: `start_timer` and `check_timer`.
@@ -124,21 +139,16 @@ Checks the elapsed time for an existing timer.
 
 ```
 .
+├── .git/                 # Git version control directory
 ├── dist/                 # Compiled JavaScript output
-├── memory-bank/          # Cline's internal documentation
-│   ├── activeContext.md
-│   ├── productContext.md
-│   ├── projectbrief.md
-│   ├── progress.md
-│   ├── systemPatterns.md
-│   └── techContext.md
 ├── src/                  # TypeScript source code
 │   └── index.ts          # Main MCP server logic
-├── .clinerules           # Cline's custom instructions
+├── .gitignore            # Specifies intentionally untracked files to ignore
 ├── package.json          # Project metadata and dependencies
 ├── README.md             # This file
 ├── tsconfig.json         # TypeScript configuration
-└── yarn.lock             # Yarn dependency lock file
+├── yarn.lock             # Yarn dependency lock file
+└── test-client.ts        # Script for testing server functionality
 ```
 
 ## Contributing
