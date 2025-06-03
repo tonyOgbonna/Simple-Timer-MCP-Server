@@ -22,11 +22,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/timer_mcp_server.git
-    cd timer_mcp_server
+    git clone https://github.com/tonyOgbonna/Simple-Timer-MCP-Server.git
+    cd Simple-Timer-MCP-Server
     ```
-    *(Note: Replace `https://github.com/your-username/timer_mcp_server.git` with the actual repository URL once hosted.)*
-
+    
 2.  **Install dependencies:**
     ```bash
     yarn install
