@@ -71,6 +71,18 @@ Typically, you will need to provide the host with the command to execute this se
 
     Consult your specific MCP host's documentation for precise instructions on adding a local MCP server.
 
+    Generally:
+    
+    ```json
+    "mcpServers": {
+      "Simple-Timer-MCP-Server": {
+        "command": "node",
+        "args": [
+          "/path/to/install/folder/dist/index.js"
+        ]
+      }
+    }
+    ```
 ## MCP Tools
 
 This MCP Server exposes two tools: `start_timer` and `check_timer`.
