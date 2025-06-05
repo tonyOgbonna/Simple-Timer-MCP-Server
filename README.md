@@ -7,7 +7,9 @@ An MCP (Model Context Protocol) Server that provides interval timing functionali
 -   **Token-based Timers**: Start and check timers using unique string identifiers (tokens).
 -   **Elapsed Time Calculation**: Calculates and returns the time elapsed since a timer was started.
 -   **Human-Readable Output**: Option to get elapsed time in a human-readable format (e.g., "2 hours, 15 minutes ago").
--   **SQLite Database**: Uses a lightweight SQLite database for persistent storage of timer data.
+-   **Timer Deletion**: Ability to delete existing timers.
+-   **Timer Listing**: List all currently active timers.
+-   **SQLite Database**: Uses a lightweight `better-sqlite3` database for persistent storage of timer data.
 
 ## Getting Started
 
@@ -144,6 +146,64 @@ Checks the elapsed time for an existing timer.
     or
     ```
     No timer found for token 'non_existent_timer'.
+    ```
+
+### `delete_timer`
+
+Deletes an existing timer for a given token.
+
+-   **Arguments**:
+    -   `token` (string, required): The unique string identifier for the timer to delete.
+
+-   **Example Usage (Conceptual - via MCP Client)**:
+    ```json
+    {
+      "tool_name": "delete_timer",
+      "arguments": {
+        "token": "my_first_timer"
+      }
+    }
+    ```
+
+-   **Example Response**:
+    ```
+    Timer for token 'my_first_timer' deleted successfully.
+    ```
+    or
+    ```
+    No timer found for token 'non_existent_timer' to delete.
+    ```
+
+### `list_timers`
+
+Lists all currently active timers, returning their tokens and start times.
+
+-   **Arguments**: None
+
+-   **Example Usage (Conceptual - via MCP Client)**:
+    ```json
+    {
+      "tool_name": "list_timers",
+      "arguments": {}
+    }
+    ```
+
+-   **Example Response**:
+    ```json
+    [
+      {
+        "token": "my_first_timer",
+        "startTime": "2025-06-03T01:55:00.000Z"
+      },
+      {
+        "token": "another_timer",
+        "startTime": "2025-06-03T02:00:00.000Z"
+      }
+    ]
+    ```
+    or (if no timers exist)
+    ```json
+    []
     ```
 
 ## Project Structure
