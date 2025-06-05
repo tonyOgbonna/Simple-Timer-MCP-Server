@@ -87,7 +87,7 @@ Typically, you will need to provide the host with the command to execute this se
     ```
 ## MCP Tools
 
-This MCP Server exposes two tools: `start_timer` and `check_timer`.
+This MCP Server exposes four tools: `start_timer`, `check_timer`, `delete_timer`, and `list_timers`.
 
 ### `start_timer`
 
