@@ -4,12 +4,12 @@ An MCP (Model Context Protocol) Server that provides interval timing functionali
 
 ## Features
 
--   **Token-based Timers**: Start and check timers using unique string identifiers (tokens).
--   **Elapsed Time Calculation**: Calculates and returns the time elapsed since a timer was started.
--   **Human-Readable Output**: Option to get elapsed time in a human-readable format (e.g., "2 hours, 15 minutes ago").
--   **Timer Deletion**: Ability to delete existing timers.
--   **Timer Listing**: List all currently active timers.
--   **SQLite Database**: Uses a lightweight `better-sqlite3` database for persistent storage of timer data.
+- **Token-based Timers**: Start and check timers using unique string identifiers (tokens).
+- **Elapsed Time Calculation**: Calculates and returns the time elapsed since a timer was started.
+- **Human-Readable Output**: Option to get elapsed time in a human-readable format (e.g., "2 hours, 15 minutes ago").
+- **Timer Deletion**: Ability to delete existing timers.
+- **Timer Listing**: List all currently active timers.
+- **SQLite Database**: Uses a lightweight `better-sqlite3` database for persistent storage of timer data.
 
 ## Getting Started
 
@@ -17,8 +17,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
--   Node.js (v18.x or later recommended)
--   Yarn (v1.x or later)
+- Node.js (v18.x or later recommended)
+- Yarn (v1.x or later)
 
 ### Installation
 
@@ -27,7 +27,6 @@ These instructions will get you a copy of the project up and running on your loc
     git clone https://github.com/tonyOgbonna/Simple-Timer-MCP-Server.git
     cd Simple-Timer-MCP-Server
     ```
-    
 2.  **Install dependencies:**
     ```bash
     yarn install
@@ -67,14 +66,14 @@ Typically, you will need to provide the host with the command to execute this se
 1.  **Ensure the server is built**: Before integrating, make sure the project is built by running `yarn build`.
 2.  **Provide the execution command**: The command to run this server is `node dist/index.js`.
 
-    -   **For hosts that accept a direct command**: Simply provide `node dist/index.js`.
-    -   **For hosts that require a full path**: You might need to provide the absolute path to your project's `dist/index.js` file, e.g., `/path/to/your/project/timer_mcp_server/dist/index.js`.
-    -   **For hosts that use `package.json` scripts**: Some hosts might automatically detect and use the `start` script defined in `package.json` (i.e., `yarn start`).
+    - **For hosts that accept a direct command**: Simply provide `node dist/index.js`.
+    - **For hosts that require a full path**: You might need to provide the absolute path to your project's `dist/index.js` file, e.g., `/path/to/your/project/timer_mcp_server/dist/index.js`.
+    - **For hosts that use `package.json` scripts**: Some hosts might automatically detect and use the `start` script defined in `package.json` (i.e., `yarn start`).
 
     Consult your specific MCP host's documentation for precise instructions on adding a local MCP server.
 
     Generally:
-    
+
     ```json
     "mcpServers": {
       "Simple-Timer-MCP-Server": {
@@ -85,6 +84,7 @@ Typically, you will need to provide the host with the command to execute this se
       }
     }
     ```
+
 ## MCP Tools
 
 This MCP Server exposes four tools: `start_timer`, `check_timer`, `delete_timer`, and `list_timers`.
@@ -93,20 +93,22 @@ This MCP Server exposes four tools: `start_timer`, `check_timer`, `delete_timer`
 
 Starts a new timer for a given token. If a timer for the token already exists, it will inform you of the existing timer's start time.
 
--   **Arguments**:
-    -   `token` (string, required): A unique string identifier for the timer.
+- **Arguments**:
 
--   **Example Usage (Conceptual - via MCP Client)**:
+    - `token` (string, required): A unique string identifier for the timer.
+
+- **Example Usage (Conceptual - via MCP Client)**:
+
     ```json
     {
-      "tool_name": "start_timer",
-      "arguments": {
-        "token": "my_first_timer"
-      }
+        "tool_name": "start_timer",
+        "arguments": {
+            "token": "my_first_timer"
+        }
     }
     ```
 
--   **Example Response**:
+- **Example Response**:
     ```
     Timer for token 'my_first_timer' started at: 2025-06-03T01:55:00.000Z
     ```
@@ -119,27 +121,30 @@ Starts a new timer for a given token. If a timer for the token already exists, i
 
 Checks the elapsed time for an existing timer.
 
--   **Arguments**:
-    -   `token` (string, required): The unique string identifier for the timer.
-    -   `format` (enum, optional): `raw` (default) for milliseconds, or `human_readable` for a descriptive string.
+- **Arguments**:
 
--   **Example Usage (Conceptual - via MCP Client)**:
+    - `token` (string, required): The unique string identifier for the timer.
+    - `format` (enum, optional): `raw` (default) for milliseconds, or `human_readable` for a descriptive string.
+
+- **Example Usage (Conceptual - via MCP Client)**:
+
     ```json
     {
-      "tool_name": "check_timer",
-      "arguments": {
-        "token": "my_first_timer",
-        "format": "human_readable"
-      }
+        "tool_name": "check_timer",
+        "arguments": {
+            "token": "my_first_timer",
+            "format": "human_readable"
+        }
     }
     ```
 
--   **Example Response (human_readable)**:
+- **Example Response (human_readable)**:
+
     ```
     Elapsed time for token 'my_first_timer': 1 hour, 30 minutes, 45 seconds.
     ```
 
--   **Example Response (raw)**:
+- **Example Response (raw)**:
     ```
     Elapsed time for token 'my_first_timer': 5445000 milliseconds.
     ```
@@ -152,20 +157,22 @@ Checks the elapsed time for an existing timer.
 
 Deletes an existing timer for a given token.
 
--   **Arguments**:
-    -   `token` (string, required): The unique string identifier for the timer to delete.
+- **Arguments**:
 
--   **Example Usage (Conceptual - via MCP Client)**:
+    - `token` (string, required): The unique string identifier for the timer to delete.
+
+- **Example Usage (Conceptual - via MCP Client)**:
+
     ```json
     {
-      "tool_name": "delete_timer",
-      "arguments": {
-        "token": "my_first_timer"
-      }
+        "tool_name": "delete_timer",
+        "arguments": {
+            "token": "my_first_timer"
+        }
     }
     ```
 
--   **Example Response**:
+- **Example Response**:
     ```
     Timer for token 'my_first_timer' deleted successfully.
     ```
@@ -178,27 +185,28 @@ Deletes an existing timer for a given token.
 
 Lists all currently active timers, returning their tokens and start times.
 
--   **Arguments**: None
+- **Arguments**: None
 
--   **Example Usage (Conceptual - via MCP Client)**:
+- **Example Usage (Conceptual - via MCP Client)**:
+
     ```json
     {
-      "tool_name": "list_timers",
-      "arguments": {}
+        "tool_name": "list_timers",
+        "arguments": {}
     }
     ```
 
--   **Example Response**:
+- **Example Response**:
     ```json
     [
-      {
-        "token": "my_first_timer",
-        "startTime": "2025-06-03T01:55:00.000Z"
-      },
-      {
-        "token": "another_timer",
-        "startTime": "2025-06-03T02:00:00.000Z"
-      }
+        {
+            "token": "my_first_timer",
+            "startTime": "2025-06-03T01:55:00.000Z"
+        },
+        {
+            "token": "another_timer",
+            "startTime": "2025-06-03T02:00:00.000Z"
+        }
     ]
     ```
     or (if no timers exist)
@@ -211,15 +219,27 @@ Lists all currently active timers, returning their tokens and start times.
 ```
 .
 ├── .git/                 # Git version control directory
+├── .github/              # (Optional) GitHub specific files like workflows
+├── __mocks__/            # Manual mocks for Jest (e.g., for better-sqlite3)
+│   └── better-sqlite3.ts # Example mock file
 ├── dist/                 # Compiled JavaScript output
 ├── src/                  # TypeScript source code
+│   ├── __mocks__/        # (Alternative location for mocks, if used here)
 │   └── index.ts          # Main MCP server logic
+├── tests/                # Jest unit tests
+│   └── index.test.ts     # Unit tests for the MCP server tools
+├── .eslintignore         # (Optional: if not using .eslintrc.cjs ignorePatterns)
+├── .eslintrc.cjs         # ESLint configuration
 ├── .gitignore            # Specifies intentionally untracked files to ignore
+├── .prettierignore       # (Optional: if used)
+├── .prettierrc.json      # Prettier configuration
+├── jest.config.cjs       # Jest configuration
+├── LICENSE               # Project license (If you add one, e.g. ISC from package.json)
 ├── package.json          # Project metadata and dependencies
 ├── README.md             # This file
 ├── tsconfig.json         # TypeScript configuration
 ├── yarn.lock             # Yarn dependency lock file
-└── test-client.ts        # Script for testing server functionality
+└── test-client.ts        # Example script for testing server functionality (if maintained)
 ```
 
 ## Contributing
